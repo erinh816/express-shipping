@@ -11,20 +11,20 @@ const SHIPIT_API_KEY = "SUPER-DUPER-SECRET";
 async function shipProduct({ productId, name, addr, zip }) {
   console.warn("Called our real shipProduct function");
 
-  const response = await fetch(SHIPIT_SHIP_URL,{
+  const response = await fetch(SHIPIT_SHIP_URL, {
     method: "POST",
     body: JSON.stringify({
-      itemId: productId, 
-      name, 
-      addr, 
+      itemId: productId,
+      name,
+      addr,
       zip,
       key: SHIPIT_API_KEY,
     }),
-    headers:{
-      "content-type": "application/json"
-    }
+    headers: {
+      "content-type": "application/json",
+    },
   });
-  
+
   const shipData = await response.json();
 
   return shipData.receipt.shipId;
